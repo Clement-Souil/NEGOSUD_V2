@@ -34,6 +34,7 @@ public class NegosudContext : DbContext
     {
         var connexionString = "server=localhost;port=3306;userid=root;password=;database=negosud_V2;";
         optionsBuilder.UseMySql(connexionString, ServerVersion.AutoDetect(connexionString));
+
     }
 
 }

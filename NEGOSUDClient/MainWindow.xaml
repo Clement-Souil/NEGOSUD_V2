@@ -3,102 +3,107 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NEGOSUDClient"
+        xmlns:local="clr-namespace:NEGOSUDClient" xmlns:viewmodels="clr-namespace:NEGOSUDClient.MVVM.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="NEGOSUD" Height="450" Width="800">
     <Window.Resources>
-
-        <Style TargetType="Button">
-            <!-- Style pour boutons avec les coins arrondis -->
+         <!--Style pour boutons avec coins arrondis et effet hover--> 
+        <Style x:Key="StyleBouton" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontFamily" Value="Lato"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="10">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"/>
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="10"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <StackPanel Orientation="Horizontal" Margin="10,0">
+                                <Image Source="{TemplateBinding Tag}" Width="20" Height="20" Margin="10,0,10,0"/>
+                                <ContentPresenter VerticalAlignment="Center"/>
+                            </StackPanel>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+             <!--Effet de couleur sur les menus--> 
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FCE4EC"/>
+                     <!--Rose clair--> 
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
 
-    <!-- La grille principale qui contrôle le menu et le contenu -->
+    <!-- Grille principale -->
     <Grid>
         <!-- Colonnes de la grille principale -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
-            <!-- Colonne fixe pour le menu -->
+            <!-- Menu -->
             <ColumnDefinition Width="*"/>
-            <!-- Colonne flexible pour le contenu principal -->
+            <!-- Contenu principal -->
             <ColumnDefinition Width="2"/>
-            <!-- Ligne de séparation noire -->
+            <!-- Ligne noire de séparation -->
         </Grid.ColumnDefinitions>
 
-
         <!-- Menu de navigation à gauche -->
-        <StackPanel Grid.Column="0"
-                Background="White"
-                Margin="10">
-            <!--Logo de la page-->
-            <Border Height="100"
-                Width="100"
-                CornerRadius="15"
-                Margin="0,20,0,20"
-                ClipToBounds="True">
-                <Border.Background>
-                    <ImageBrush ImageSource="C:/Users/souil/OneDrive/Bureau/GitProject/NEGOSUDOld/NEGOSUD/assets/Logo/LogoNEGOSUD.jpg"
-                            Stretch="UniformToFill"/>
-                </Border.Background>
-            </Border>
-
-            <!-- Boutons du menu -->
-            <Button Content="Commandes"
-                Background="#D9D9D9"
-                Foreground="Black"
-                Margin="0,5,0,5"
-                Height="40"
-                Cursor="Hand"/>
-            <Button Content="Produits"
-                Background="#D9D9D9"
-                Foreground="Black"
-                Margin="0,5,0,5"
-                Height="40"
-                Cursor="Hand"/>
-            <Button Content="Clients"
-                Background="#D9D9D9"
-                Foreground="Black"
-                Margin="0,5,0,5"
-                Height="40"
-                Cursor="Hand"/>
-
-
+        <StackPanel Grid.Column="0" Background="White">
+            <!-- Logo circulaire -->
+            
+            <Ellipse Height="180" Width="180" HorizontalAlignment="Center">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="assets/Logo/LogoNEGOSUD.png" Stretch="UniformToFill"/>
+                </Ellipse.Fill>
+            </Ellipse>
+        
+            <!-- Boutons avec icônes -->
+            <Button Style="{StaticResource StyleBouton}" Command="{Binding NavigationCommand}" CommandParameter="Commandes" Margin="0,5,0,0" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Image Source="assets/Logo/Logo_Menu/Commande.png" Width="13" Height="13" Margin="0,0,10,0"/>
+                    <TextBlock Text="COMMANDES" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource StyleBouton}" Command="{Binding NavigationCommand}" CommandParameter="Produits" Margin="0,5,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Image Source="assets/Logo/Logo_Menu/Produit.png" Width="13" Height="13" Margin="0,0,10,0"/>
+                    <TextBlock Text="PRODUITS" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource StyleBouton}" Command="{Binding NavigationCommand}" CommandParameter="Clients" Margin="0,5,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Image Source="assets/Logo/Logo_Menu/Client.png" Width="13" Height="13" Margin="0,0,10,0"/>
+                    <TextBlock Text="CLIENTS" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource StyleBouton}" Command="{Binding NavigationCommand}" CommandParameter="Fournisseurs" Margin="0,5,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Image Source="assets/Logo/Logo_Menu/Fournisseur.png" Width="13" Height="13" Margin="0,0,10,0"/>
+                    <TextBlock Text="FOURNISSEURS" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource StyleBouton}" Command="{Binding NavigationCommand}" CommandParameter="Stock" Margin="0,5,0,0" Cursor="Hand">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Image Source="assets/Logo/Logo_Menu/Stock.png" Width="13" Height="13" Margin="0,0,10,0"/>
+                    <TextBlock Text="STOCK" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
 
         </StackPanel>
 
+        <!-- Contenu principal -->
         <ContentControl Grid.Column="1"
-              Content="{Binding CurrentViewModel}">
-            
-        </ContentControl> 
+                        Content="{Binding CurrentViewModel}">
+        </ContentControl>
 
-
-
-
-
-        <!-- Ligne noire de séparation verticale -->
-        <Rectangle Grid.Column="0"
-               Width="2"
-               Fill="Black"
-               VerticalAlignment="Stretch"
-               Margin="0,10,-200,10">
-        </Rectangle>
-
-        <Frame x:Name="MainFrame"
-           Grid.Column="1"
-           NavigationUIVisibility="Hidden"/>
-
+        <!-- Ligne noire de séparation -->
+        <Rectangle Grid.Column="0" Width="2" Fill="Black" VerticalAlignment="Stretch" Margin="0,0,-200,0"/>
     </Grid>
 </Window>

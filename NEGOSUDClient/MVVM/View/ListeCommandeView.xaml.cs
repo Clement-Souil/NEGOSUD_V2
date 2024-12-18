@@ -1,5 +1,7 @@
-﻿using System;
+﻿using NEGOSUDClient.MVVM.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,12 @@ namespace NEGOSUDClient.MVVM.View
         public ListeCommandeView()
         {
             InitializeComponent();
+            DataContext = new ListeCommandeViewModel();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

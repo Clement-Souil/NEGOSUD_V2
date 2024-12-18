@@ -38,7 +38,8 @@ public class MainWindowViewModel : BaseViewModel
     public MainWindowViewModel()
     {
         NavigationCommand = new RelayCommand(NavigateTo);
-        CurrentViewModel = new ListeCommandeViewModel();
+        CurrentViewModel = null; // Pour l'instant initalisé à null 
+
 
     }
 
@@ -48,14 +49,20 @@ public class MainWindowViewModel : BaseViewModel
         {
             switch (obj)
             {
-                case "ListeCommandes":
-                   // CurrentViewModel = new ListeCommandeViewModel();
+                case "Commandes":
+                    CurrentViewModel = new ListeCommandeViewModel();
                     break;
-                case "Salaries":
-                 //   CurrentViewModel = new AccueilViewModel();
+                case "Produits":
+                    CurrentViewModel = new ListeProduitViewModel();
                     break;
-                case "Services":
-                 //   CurrentViewModel = new GestionServicesViewModel();
+                case "Clients":
+                    CurrentViewModel = new ListeClientViewModel();
+                    break;
+                case "Fournisseurs":
+                    CurrentViewModel = new ListeFournisseurViewModel();
+                    break;
+                case "Stock":
+                    CurrentViewModel = new StockViewModel();
                     break;
             }
         }
