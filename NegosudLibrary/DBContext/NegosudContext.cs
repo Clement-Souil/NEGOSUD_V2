@@ -1,14 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using NegosudLibrary.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace NegosudLibrary.DBContext;
 
-public class NegosudContext : DbContext
+
+public class NegosudContext(DbContextOptions<NegosudContext> options) : IdentityDbContext<UserSecure>(options)
 {
     public DbSet<Article> Articles { get; set; }
 
@@ -26,16 +30,27 @@ public class NegosudContext : DbContext
 
     public DbSet<MouvementStock> MouvementStocks { get; set; }
 
+    public DbSet<StatutCommande> StatutCommandes { get; set; }     
+
     public DbSet<TypeMouvement> TypeMouvements { get; set; }
 
     public DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var connexionString = "server=localhost;port=3306;userid=root;password=;database=negosud_V2;";
-        optionsBuilder.UseMySql(connexionString, ServerVersion.AutoDetect(connexionString));
+    public DbSet<UserSecure> UserSecures { get; set; }
 
-    }
 
+        // Si vous avez besoin d'une configuration spécifique à l'entité, utilisez OnModelCreating
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            // Ajoutez ici des configurations spécifiques aux entités si nécessaire
+        }
+
+//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//    {
+//        var version = new MySqlServerVersion(new Version(0, 0, 0));
+//        var connString = "server=localhost;database=cavemanager;user=root;password=;";
+//        optionsBuilder.UseMySql(connString, ServerVersion.AutoDetect(connString));
+//    }
 }
 

@@ -1,7 +1,19 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NegosudLibrary.DAO;
 using NegosudLibrary.DBContext;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
+    .AddIdentityCookies();
+
+builder.Services.AddAuthorizationBuilder();
+
+builder.Services.AddIdentityCore<UserSecure>()
+    .AddEntityFrameworkStores<NegosudContext>()
+    .AddApiEndpoints();
 
 // Add services to the container.
 
@@ -17,6 +29,8 @@ builder.Services.AddDbContext<NegosudContext>(options =>
     options.UseMySql(connexionString, ServerVersion.AutoDetect(connexionString)));
 
 var app = builder.Build();
+
+app.MapIdentityApi<UserSecure>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

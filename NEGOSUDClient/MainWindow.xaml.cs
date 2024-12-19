@@ -1,4 +1,7 @@
 ﻿using NEGOSUDClient.MVVM.ViewModels;
+using NEGOSUDClient.Services;
+
+using System.Net.Http;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +25,8 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         this.DataContext = MainWindowViewModel.Instance;
+
+        Task.Run(async () => await HttpClientService.Login("user", "password"));
     }
-  
+
 }

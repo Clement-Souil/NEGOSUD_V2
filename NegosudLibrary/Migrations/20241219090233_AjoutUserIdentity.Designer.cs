@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NegosudLibrary.DBContext;
 
@@ -11,9 +12,11 @@ using NegosudLibrary.DBContext;
 namespace NegosudLibrary.Migrations
 {
     [DbContext(typeof(NegosudContext))]
-    partial class NegosudContextModelSnapshot : ModelSnapshot
+    [Migration("20241219090233_AjoutUserIdentity")]
+    partial class AjoutUserIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -433,7 +436,7 @@ namespace NegosudLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("StatutCommandes");
+                    b.ToTable("StatutCommande");
                 });
 
             modelBuilder.Entity("NegosudLibrary.DAO.TypeMouvement", b =>

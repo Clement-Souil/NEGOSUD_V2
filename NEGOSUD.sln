@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEGOSUDClient", "NEGOSUDClient\NEGOSUDClient.csproj", "{A2E4C969-8D2A-4E19-901F-EC68E3E12BDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NegosudLibrary", "NegosudLibrary\NegosudLibrary.csproj", "{FF8B2288-C011-4957-88DB-DD765917ED74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiNegosud", "ApiNegosud\ApiNegosud.csproj", "{83A75EA0-E3AA-4381-9CDB-FBAE9B54E7E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiNegosud", "Test\ApiNegosud.csproj", "{6F39E124-E881-4EAA-ACB2-C938FF54A77A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{FF8B2288-C011-4957-88DB-DD765917ED74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF8B2288-C011-4957-88DB-DD765917ED74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF8B2288-C011-4957-88DB-DD765917ED74}.Release|Any CPU.Build.0 = Release|Any CPU
-		{83A75EA0-E3AA-4381-9CDB-FBAE9B54E7E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83A75EA0-E3AA-4381-9CDB-FBAE9B54E7E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83A75EA0-E3AA-4381-9CDB-FBAE9B54E7E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83A75EA0-E3AA-4381-9CDB-FBAE9B54E7E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F39E124-E881-4EAA-ACB2-C938FF54A77A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F39E124-E881-4EAA-ACB2-C938FF54A77A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F39E124-E881-4EAA-ACB2-C938FF54A77A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F39E124-E881-4EAA-ACB2-C938FF54A77A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
