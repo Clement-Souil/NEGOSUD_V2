@@ -41,6 +41,12 @@ public class Article
     [Column("seuilreappro")]
     public int SeuilReappro { get; set; }
 
+    [Column("seuilminimal")]
+    public int SeuilMinimal { get; set; }
+
+    [Column("volume")]
+    public double Volume { get; set; }
+
     [ForeignKey(nameof(FamilleArticle))]
     [Column("famillearticleid")]
     public int FamilleArticleId { get; set; }

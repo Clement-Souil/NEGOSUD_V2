@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NegosudLibrary.DBContext;
 
@@ -11,9 +12,11 @@ using NegosudLibrary.DBContext;
 namespace NegosudLibrary.Migrations
 {
     [DbContext(typeof(NegosudContext))]
-    partial class NegosudContextModelSnapshot : ModelSnapshot
+    [Migration("20241219151223_AjoutVolumeArticle")]
+    partial class AjoutVolumeArticle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -324,9 +327,8 @@ namespace NegosudLibrary.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Contact")
-                        .IsRequired()
-                        .HasColumnType("longtext")
+                    b.Property<int>("Contact")
+                        .HasColumnType("int")
                         .HasColumnName("contact");
 
                     b.Property<string>("NomDomaine")
@@ -426,25 +428,6 @@ namespace NegosudLibrary.Migrations
                     b.ToTable("MouvementStocks");
                 });
 
-            modelBuilder.Entity("NegosudLibrary.DAO.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nom")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("nom");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Role");
-                });
-
             modelBuilder.Entity("NegosudLibrary.DAO.StatutCommande", b =>
                 {
                     b.Property<int>("Id")
@@ -522,9 +505,11 @@ namespace NegosudLibrary.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("prenom");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int")
-                        .HasColumnName("roleid");
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("role");
 
                     b.Property<string>("Tel")
                         .IsRequired()
@@ -533,8 +518,6 @@ namespace NegosudLibrary.Migrations
                         .HasColumnName("tel");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
@@ -747,17 +730,6 @@ namespace NegosudLibrary.Migrations
                     b.Navigation("Article");
 
                     b.Navigation("TypeMouvement");
-                });
-
-            modelBuilder.Entity("NegosudLibrary.DAO.User", b =>
-                {
-                    b.HasOne("NegosudLibrary.DAO.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("NegosudLibrary.DAO.Commande", b =>

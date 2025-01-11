@@ -34,12 +34,14 @@ public class User
     [Column("adresse")]
     public string Adresse { get; set; }
 
-    [StringLength(50)]
-    [Column("role")]
-    public string Role { get; set; }
-
     [StringLength(100)]
     [Column("email")]
     public string Email { get; set; }
+
+    [ForeignKey(nameof(Role))]
+    [Column("roleid")]
+    public int RoleId { get; set; }
+
+    public virtual Role? Role { get; set; } = null!;
 
 }

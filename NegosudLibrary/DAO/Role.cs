@@ -8,18 +8,12 @@ using System.Threading.Tasks;
 
 namespace NegosudLibrary.DAO;
 
-public class Fournisseur
+public class Role
 {
     [Key]
     [Column("id")]
     public int Id { get; set; }
 
-    [Column("nomdomaine")]
-    public string NomDomaine { get; set; }
-
-    [Column("region")]
-    public string Region { get; set; }
-
-    [Column("contact")]
-    public string Contact { get; set; }
+    [Column("nom")]
+    public string Nom { get; set; }
 }

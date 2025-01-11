@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace NegosudLibrary.DBContext;
 
@@ -46,11 +47,24 @@ public class NegosudContext(DbContextOptions<NegosudContext> options) : Identity
             // Ajoutez ici des configurations spécifiques aux entités si nécessaire
         }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//    {
-//        var version = new MySqlServerVersion(new Version(0, 0, 0));
-//        var connString = "server=localhost;database=cavemanager;user=root;password=;";
-//        optionsBuilder.UseMySql(connString, ServerVersion.AutoDetect(connString));
-//    }
+    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    {
+    //        var version = new MySqlServerVersion(new Version(0, 0, 0));
+    //        var connString = "server=localhost;database=cavemanager;user=root;password=;";
+    //        optionsBuilder.UseMySql(connString, ServerVersion.AutoDetect(connString));
+    //    }
+    public class NegoSudDBContextFactory : IDesignTimeDbContextFactory<NegosudContext>
+    {
+        public NegosudContext CreateDbContext(string[] args)
+        {
+            var connexionString = "server=localhost;port=3306;userid=root;password=;database=negosud_V2;";
+            var optionsBuilder = new DbContextOptionsBuilder<NegosudContext>();
+            optionsBuilder.UseMySql(connexionString, ServerVersion.AutoDetect(connexionString));
+
+            return new NegosudContext(optionsBuilder.Options);
+        }
+    }
 }
+
+
 
