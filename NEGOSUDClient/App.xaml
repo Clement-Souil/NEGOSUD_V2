@@ -11,7 +11,9 @@
             <DataTemplate DataType="{x:Type viewModel:ListeCommandeViewModel}">
                 <view:ListeCommandeView/>
             </DataTemplate>
-            
+            <DataTemplate DataType="{x:Type viewModel:ArticlesViewModel}">
+                <view:ArticlesView/>
+            </DataTemplate>
         </ResourceDictionary>
          
     </Application.Resources>

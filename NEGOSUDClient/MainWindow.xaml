@@ -71,10 +71,10 @@
                     <TextBlock Text="COMMANDES" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource StyleBouton}" Command="{Binding NavigationCommand}" CommandParameter="Produits" Margin="0,5,0,0">
+            <Button Style="{StaticResource StyleBouton}" Command="{Binding NavigationCommand}" CommandParameter="Articles" Margin="0,5,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Image Source="assets/Logo/Logo_Menu/Produit.png" Width="13" Height="13" Margin="0,0,10,0"/>
-                    <TextBlock Text="PRODUITS" VerticalAlignment="Center"/>
+                    <TextBlock Text="ARTICLES" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource StyleBouton}" Command="{Binding NavigationCommand}" CommandParameter="Clients" Margin="0,5,0,0">
