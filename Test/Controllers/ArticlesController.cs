@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NegosudLibrary.DAO;
 using NegosudLibrary.DBContext;
+using NegosudLibrary.DTO;
 
 namespace ApiNegosud.Controllers
 {
@@ -25,9 +26,38 @@ namespace ApiNegosud.Controllers
 
         // GET: api/Articles
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Article>>> GetArticles()
+        public async Task<ActionResult<IEnumerable<ArticleDTO>>> GetArticles()
         {
-            return await _context.Articles.ToListAsync();
+            List<ArticleDTO> articleDTOs = new List<ArticleDTO>();
+
+            var l =  await _context.Articles
+                        .Include(c => c.FamilleArticle)
+                        .Include(x => x.Fournisseur)
+                        .ToListAsync();
+
+            foreach(var article in l)
+            {
+                ArticleDTO articleDTO = new ArticleDTO
+                {
+                    Id = article.Id,
+                    Nom = article.Nom,
+                    PrixAchat = article.PrixAchat,
+                    PrixVente = article.PrixVente,
+                    Annee = article.Annee,
+                    Degre = article.Degre,
+                    Description = article.Description,
+                    Famille = article.FamilleArticle.Nom,
+                    Cepage = article.Cepage,
+                    Quantite = article.Quantite,
+                    Volume = article.Volume,
+                    SeuilMinimal = article.SeuilMinimal,
+                    SeuilReappro = article.SeuilReappro,
+                    Fournisseur = article.Fournisseur.NomDomaine
+                };
+                articleDTOs.Add(articleDTO);
+            }
+            return articleDTOs;
+            
         }
 
         // GET: api/Articles/5
