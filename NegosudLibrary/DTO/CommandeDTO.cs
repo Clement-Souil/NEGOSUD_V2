@@ -1,19 +1,25 @@
-﻿namespace NegosudLibrary.DTO;
+﻿using NegosudLibrary.DAO;
+
+namespace NegosudLibrary.DTO;
 
 public class CommandeDTO
 {
-    public int Id { get; set; } = 0;
+    public int Id { get; set; }
 
-    public DateTime DateCommande { get; set; }
+    public DateTime Date { get; set; }
 
-    public string FullName { get; set; } = String.Empty;
+    public int UserId { get; set; }
 
-    public int StatutCommande { get; set; } = 0;
+    public int StatutCommandeId { get; set; }
 
-    public int StatutPaiement { get; set; } = 0;
+    public int FournisseurId { get; set; }
 
-    public int Total { get; set; } = 0;
+    public string FournisseurNom { get; set; } = string.Empty;
 
-    public virtual ICollection<LigneCommandeDTO>? ProduitCollection { get; set; }
+    public int PrixTotal { get; set; } = 0;
+
+    public virtual IEnumerable<LigneCommande>? LignesCommande { get; set; }
+
+    //public virtual ICollection<LigneCommandeDTO>? ProduitCollection { get; set; }
 
 }

@@ -12,8 +12,8 @@ using NegosudLibrary.DBContext;
 namespace NegosudLibrary.Migrations
 {
     [DbContext(typeof(NegosudContext))]
-    [Migration("20241219134503_AjoutController")]
-    partial class AjoutController
+    [Migration("20250111121225_InitialDatabase")]
+    partial class InitialDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -192,8 +192,8 @@ namespace NegosudLibrary.Migrations
                         .HasColumnType("int")
                         .HasColumnName("fournisseurid");
 
-                    b.Property<string>("InventaireId")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int?>("InventaireId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nom")
                         .IsRequired()
@@ -212,9 +212,17 @@ namespace NegosudLibrary.Migrations
                         .HasColumnType("int")
                         .HasColumnName("quantite");
 
+                    b.Property<int>("SeuilMinimal")
+                        .HasColumnType("int")
+                        .HasColumnName("seuilminimal");
+
                     b.Property<int>("SeuilReappro")
                         .HasColumnType("int")
                         .HasColumnName("seuilreappro");
+
+                    b.Property<double>("Volume")
+                        .HasColumnType("double")
+                        .HasColumnName("volume");
 
                     b.HasKey("Id");
 
@@ -319,8 +327,9 @@ namespace NegosudLibrary.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Contact")
-                        .HasColumnType("int")
+                    b.Property<string>("Contact")
+                        .IsRequired()
+                        .HasColumnType("longtext")
                         .HasColumnName("contact");
 
                     b.Property<string>("NomDomaine")
@@ -340,9 +349,12 @@ namespace NegosudLibrary.Migrations
 
             modelBuilder.Entity("NegosudLibrary.DAO.Inventaire", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("id");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)")
@@ -418,6 +430,25 @@ namespace NegosudLibrary.Migrations
                     b.HasIndex("TypeMouvementId");
 
                     b.ToTable("MouvementStocks");
+                });
+
+            modelBuilder.Entity("NegosudLibrary.DAO.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("nom");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Role");
                 });
 
             modelBuilder.Entity("NegosudLibrary.DAO.StatutCommande", b =>
@@ -497,11 +528,9 @@ namespace NegosudLibrary.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("prenom");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("role");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int")
+                        .HasColumnName("roleid");
 
                     b.Property<string>("Tel")
                         .IsRequired()
@@ -510,6 +539,8 @@ namespace NegosudLibrary.Migrations
                         .HasColumnName("tel");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
@@ -722,6 +753,17 @@ namespace NegosudLibrary.Migrations
                     b.Navigation("Article");
 
                     b.Navigation("TypeMouvement");
+                });
+
+            modelBuilder.Entity("NegosudLibrary.DAO.User", b =>
+                {
+                    b.HasOne("NegosudLibrary.DAO.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("NegosudLibrary.DAO.Commande", b =>

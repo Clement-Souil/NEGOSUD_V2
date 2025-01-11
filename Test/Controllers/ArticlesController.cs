@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using NegosudLibrary.DAO;
 using NegosudLibrary.DBContext;
 
-namespace Test.Controllers
+namespace ApiNegosud.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]

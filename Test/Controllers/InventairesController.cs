@@ -32,7 +32,7 @@ namespace ApiNegosud.Controllers
 
         // GET: api/Inventaires/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Inventaire>> GetInventaire(string id)
+        public async Task<ActionResult<Inventaire>> GetInventaire(int id)
         {
             var inventaire = await _context.Inventaires.FindAsync(id);
 
@@ -47,7 +47,7 @@ namespace ApiNegosud.Controllers
         // PUT: api/Inventaires/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutInventaire(string id, Inventaire inventaire)
+        public async Task<IActionResult> PutInventaire(int id, Inventaire inventaire)
         {
             if (id != inventaire.Id)
             {
@@ -81,28 +81,14 @@ namespace ApiNegosud.Controllers
         public async Task<ActionResult<Inventaire>> PostInventaire(Inventaire inventaire)
         {
             _context.Inventaires.Add(inventaire);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (InventaireExists(inventaire.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetInventaire", new { id = inventaire.Id }, inventaire);
         }
 
         // DELETE: api/Inventaires/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteInventaire(string id)
+        public async Task<IActionResult> DeleteInventaire(int id)
         {
             var inventaire = await _context.Inventaires.FindAsync(id);
             if (inventaire == null)
@@ -116,7 +102,7 @@ namespace ApiNegosud.Controllers
             return NoContent();
         }
 
-        private bool InventaireExists(string id)
+        private bool InventaireExists(int id)
         {
             return _context.Inventaires.Any(e => e.Id == id);
         }

@@ -13,7 +13,7 @@ public class Inventaire
 {
     [Key]
     [Column("id")]
-    public string Id { get; set; }
+    public int Id { get; set; }
 
     [Column("date")]
     public DateTime Date { get; set; }

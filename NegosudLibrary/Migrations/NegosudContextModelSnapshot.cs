@@ -189,8 +189,8 @@ namespace NegosudLibrary.Migrations
                         .HasColumnType("int")
                         .HasColumnName("fournisseurid");
 
-                    b.Property<string>("InventaireId")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int?>("InventaireId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nom")
                         .IsRequired()
@@ -346,9 +346,12 @@ namespace NegosudLibrary.Migrations
 
             modelBuilder.Entity("NegosudLibrary.DAO.Inventaire", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("id");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)")

@@ -4,6 +4,8 @@ namespace NegosudLibrary.DTO;
 
 public class ClientDTO
 {
+    public int Id { get; set; }
+
     public string Nom {  get; set; } = string.Empty;
 
     public string Prenom { get; set; } = string.Empty;
@@ -20,8 +22,6 @@ public class ClientDTO
 
     public int Role { get; set; } = 0;
 
-
-// Méthode statique pour convertir un DAO (User) en DTO
     public static ClientDTO FromDAO(User dao)
     {
         return new ClientDTO
