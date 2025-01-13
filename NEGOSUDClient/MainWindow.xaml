@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NEGOSUDClient" xmlns:viewmodels="clr-namespace:NEGOSUDClient.MVVM.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="NEGOSUD" Height="450" Width="800">
+        Title="NEGOSUD" MinHeight="600" MinWidth="800" Width="1024" Height="768">
     <Window.Resources>
          <!--Style pour boutons avec coins arrondis et effet hover--> 
         <Style x:Key="StyleBouton" TargetType="Button">

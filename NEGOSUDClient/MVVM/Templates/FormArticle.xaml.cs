@@ -1,5 +1,4 @@
-﻿using NEGOSUDClient.MVVM.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NEGOSUDClient.MVVM.View
+namespace NEGOSUDClient.MVVM.Templates
 {
     /// <summary>
-    /// Logique d'interaction pour ArticlesView.xaml
+    /// Logique d'interaction pour FormArticle.xaml
     /// </summary>
-    public partial class ArticlesView : UserControl
+    public partial class FormArticle : UserControl
     {
-        public ArticlesView()
+        public FormArticle()
         {
             InitializeComponent();
-            DataContext = new ArticlesViewModel();
         }
-
-      
-      
     }
 }

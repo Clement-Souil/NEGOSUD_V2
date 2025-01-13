@@ -56,6 +56,14 @@ public class HttpClientService
         throw new Exception(response.ReasonPhrase);
     }
 
+    public static async Task<bool> DeleteArticle(int id)
+    {
+        string route = $"api/Articles/{id}";
+        var response = await Client.DeleteAsync(route);
+
+        return response.IsSuccessStatusCode;
+    }
+
     //public static async Task<List<VolDto>> GetVolLights(DateTime dateJour)
     //{
     //    string route = $"api/vols/search/{dateJour.ToString("yyyy-MM-dd")}";

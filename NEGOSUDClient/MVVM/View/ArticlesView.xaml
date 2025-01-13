@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:NEGOSUDClient.MVVM.View"
+             xmlns:local="clr-namespace:NEGOSUDClient.MVVM.View" xmlns:Templates="clr-namespace:NEGOSUDClient.MVVM.Templates"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -36,7 +36,7 @@
             </Grid.RowDefinitions>
 
             <!-- Titre et bouton -->
-            <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid Grid.Row="0" Margin="0,0,0,10" Cursor="">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <!-- Colonne pour le titre -->
@@ -55,14 +55,9 @@
                 <Grid Grid.Column="1" Width="150" Height="35" Cursor="Hand">
                     <!--Bouton-->
                     <Button Background="#FCE4EC" 
-                        BorderBrush="Transparent"/>
+                        BorderBrush="Transparent" Command="{Binding OpenArticleCreationFormCommand}"
+                            Grid.Column="1" Width="150" Height="35" Cursor="Hand" Content="+ Nouvel Article"/>
 
-                    <!--Texte par-dessus le bouton car visiblement, 
-                dans le bouton impossible de s'afficher correctement-->
-                    <TextBlock Text="+ Nouvel Article"
-                           VerticalAlignment="Center" 
-                           HorizontalAlignment="Center" 
-                           Foreground="#B61E4F"/>
                 </Grid>
 
             </Grid>
@@ -73,14 +68,14 @@
                     <!-- En-têtes -->
                     <Grid Background="#F7F7F7" Height="40">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" MinWidth="200"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="70"/>
-                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <!-- En-têtes -->
@@ -101,23 +96,24 @@
                                 <!-- Ligne 1 -->
                                 <Grid Background="White" Height="40" Margin="0,2">
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" MinWidth="200"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="70"/>
-                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="{Binding Article.Nom}" Style="{StaticResource BoldStyle}" Margin="10,0" Grid.Column="0" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Binding Article.Famille}" Margin="10,0" Grid.Column="1" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Binding Article.Annee}" Margin="10,0" Grid.Column="2" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding Article.Volume}" Width="80" Height="30" Margin="10,0" Grid.Column="3" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding Article.Quantite}" Width="80" Height="30" Margin="10,0" Grid.Column="4" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Article.Volume}" Width="80"  Margin="10,0" Grid.Column="3" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Article.Quantite}" Width="80"  Margin="10,0" Grid.Column="4" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Binding Article.PrixVente}" Style="{StaticResource BoldStyle}" Margin="10,0" Grid.Column="5" VerticalAlignment="Center"/>
-                                    <Button x:Name="btnSubmit" Command="{Binding CreateCommand}" Content="Details" Margin="10 10"  FontSize="14" Grid.Column="6"/>
-                                    <Button x:Name="btnSubmit" Command="{Binding CreateCommand}" Content="Details" Margin="10 10"  FontSize="14" Grid.Column="6"/>
+                                    <Button x:Name="btnDetails" Command="{Binding ClickDetailsCommand}" Content="Détails" Margin="2 2" Grid.Column="6" Style="{StaticResource RoundedButtonStyle}"/>
+
+                                    <Button x:Name="btnDelete" Command="{Binding ClickDeleteCommand}" Content="Supprimer" Margin="2 2" Grid.Column="7" Style="{StaticResource RoundedButtonStyle}"/>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -126,23 +122,23 @@
             </Border>
 
             <!-- Pagination -->
-            <Grid Grid.Row="2" Margin="0,10,0,0">
+            <!--<Grid Grid.Row="2" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <!-- Texte pagination -->
+                    --><!-- Texte pagination --><!--
                     <ColumnDefinition Width="*"/>
-                    <!-- Flèches navigation -->
+                    --><!-- Flèches navigation --><!--
                 </Grid.ColumnDefinitions>
 
-                <!-- Texte de pagination aligné à gauche -->
+                --><!-- Texte de pagination aligné à gauche --><!--
                 <TextBlock Text="PAGE 1 - 20" 
                        Grid.Column="0" 
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Left" 
                        Margin="10,0,0,0"/>
-                <!--  Normalement sera dynamique -->
+                --><!--  Normalement sera dynamique -->
 
-                <!-- Flèches alignées à droite -->
+                <!-- Flèches alignées à droite --><!--
                 <StackPanel Orientation="Horizontal" 
                         Grid.Column="1" 
                         HorizontalAlignment="Right" 
@@ -155,7 +151,9 @@
                         <Image Source="../../assets/Logo/Navigation/FS.png"/>
                     </Button>
                 </StackPanel>
-            </Grid>
+            </Grid>-->
         </Grid>
+        <Templates:FormArticle Visibility="{Binding IsFormArticleVisible}"/>
+        <Templates:ArticleCreationModification Visibility="{Binding CreateUpdateArticleFormVisibility}" />
     </Grid>
 </UserControl>
