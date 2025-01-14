@@ -37,9 +37,15 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="1" Grid.Column="1">
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="80"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -50,13 +56,15 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="Détails Produit" FontSize="25"/>
-                    <TextBox Grid.Row="1" Text="{Binding CurrentArticle.Article.Nom}" FontSize="30"/>
-                    <!--<TextBlock Grid.Row="1" Text="Château Rubis" FontSize="40" FontWeight="DemiBold"/>-->
-                    <!--<TextBlock Grid.Row="2" Text="2018" FontSize="20" FontWeight="DemiBold"/>-->
-                    <TextBox Grid.Row="2" Text="{Binding CurrentArticle.Article.Annee}" FontSize="20" FontWeight="DemiBold"/>
-                    <!--<TextBlock Grid.Row="3" Text="Rouge" Foreground="Gray" FontSize="20"/>-->
-                    <TextBox Grid.Row="3" Text="{Binding CurrentArticle.Article.Famille}" Foreground="Gray" FontSize="20" />
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Détails Produit" FontSize="25"/> 
+                    
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Nom Article :" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentArticle.Article.Nom}" FontSize="20" Margin="4"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="Année :" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding CurrentArticle.Article.Annee}"  Margin="4" FontSize="20" FontWeight="DemiBold"/>
+                    
+                    <TextBox Grid.Row="2" Text="Famille" Foreground="Gray" FontSize="20" />
+                    <TextBox Grid.Row="2" Text="{Binding CurrentArticle.Article.Famille}" FontSize="20" />
                     <TextBox Grid.Row="4" Text="{Binding CurrentArticle.Article.PrixVente, StringFormat={}{0} €}"  FontSize="30" Margin="0 0 0 30" FontWeight="DemiBold"/>
                     <!--<TextBlock Grid.Row="4" Text="25$"  FontSize="30" Margin="0 0 0 50" FontWeight="DemiBold"/>-->
 
