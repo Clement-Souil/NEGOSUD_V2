@@ -42,6 +42,28 @@ public class HttpClientService
             throw new Exception(response.ReasonPhrase);
     }
 
+    public static async Task<IEnumerable<ArticleDTO>> GetArticles()
+    {
+        string route = $"api/Articles";
+        var response = await Client.GetAsync(route);
+
+        if (response.IsSuccessStatusCode)
+        {
+            string resultat = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<IEnumerable<ArticleDTO>>(resultat)
+                ?? throw new FormatException($"Erreur Http : {route}");
+        }
+        throw new Exception(response.ReasonPhrase);
+    }
+
+    public static async Task<bool> DeleteArticle(int id)
+    {
+        string route = $"api/Articles/{id}";
+        var response = await Client.DeleteAsync(route);
+
+        return response.IsSuccessStatusCode;
+    }
+
     public static async Task<IEnumerable<CommandeDTO>> GetCommandAll()
     {
         string route = $"api/Commandes";

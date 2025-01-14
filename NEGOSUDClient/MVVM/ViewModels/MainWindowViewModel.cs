@@ -52,8 +52,8 @@ public class MainWindowViewModel : BaseViewModel
                 case "Commandes":
                     CurrentViewModel = new CommandeViewModel();
                     break;
-                case "Produits":
-                    CurrentViewModel = new ListeProduitViewModel();
+                case "Articles":
+                    CurrentViewModel = new ArticlesViewModel();
                     break;
                 case "Clients":
                     CurrentViewModel = new ListeClientViewModel();

@@ -44,9 +44,9 @@ public class ArticleDTO
 
     public double Volume { get; set; }
 
-    public int FamilleArticleId { get; set; }
+    public string Famille { get; set; }
 
-    public int FournisseurId { get; set; }
+    public string Fournisseur { get; set; }
 
 
 }
