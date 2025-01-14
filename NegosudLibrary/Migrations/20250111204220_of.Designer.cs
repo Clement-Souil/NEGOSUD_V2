@@ -12,8 +12,8 @@ using NegosudLibrary.DBContext;
 namespace NegosudLibrary.Migrations
 {
     [DbContext(typeof(NegosudContext))]
-    [Migration("20250111121225_InitialDatabase")]
-    partial class InitialDatabase
+    [Migration("20250111204220_of")]
+    partial class of
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
