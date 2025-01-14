@@ -20,12 +20,12 @@ namespace NEGOSUDClient.MVVM.View
     /// <summary>
     /// Logique d'interaction pour ListeCommandeVIew.xaml
     /// </summary>
-    public partial class ListeCommandeView : UserControl
+    public partial class CommandeView : UserControl
     {
-        public ListeCommandeView()
+        public CommandeView()
         {
             InitializeComponent();
-            DataContext = new ListeCommandeViewModel();
+            DataContext = new CommandeViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

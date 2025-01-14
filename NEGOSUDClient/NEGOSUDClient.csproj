@@ -17,6 +17,8 @@
     <None Remove="assets\Logo\Etat_Paiement\Annule.png" />
     <None Remove="assets\Logo\Etat_Paiement\Paye.png" />
     <None Remove="assets\Logo\LogoNEGOSUD.png" />
+    <None Remove="assets\Logo\Logo_Delete_Detail\detail.png" />
+    <None Remove="assets\Logo\Logo_Delete_Detail\poubelle.png" />
     <None Remove="assets\Logo\Logo_Menu\Client.png" />
     <None Remove="assets\Logo\Logo_Menu\Commande.png" />
     <None Remove="assets\Logo\Logo_Menu\Fournisseur.png" />
@@ -71,6 +73,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="assets\Logo\LogoNEGOSUD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\Logo\Logo_Delete_Detail\detail.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\Logo\Logo_Delete_Detail\poubelle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="assets\Logo\Logo_Menu\Client.png">

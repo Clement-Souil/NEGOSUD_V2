@@ -8,8 +8,8 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type viewModel:ListeCommandeViewModel}">
-                <view:ListeCommandeView/>
+            <DataTemplate DataType="{x:Type viewModel:CommandeViewModel}">
+                <view:CommandeView/>
             </DataTemplate>
             
         </ResourceDictionary>

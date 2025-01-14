@@ -42,6 +42,34 @@ public class HttpClientService
             throw new Exception(response.ReasonPhrase);
     }
 
+    public static async Task<IEnumerable<CommandeDTO>> GetCommandAll()
+    {
+        string route = $"api/Commandes";
+        var response = await Client.GetAsync(route);
+
+        if (response.IsSuccessStatusCode)
+        {
+            string resultat = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<IEnumerable<CommandeDTO>>(resultat)
+                ?? throw new FormatException($"Erreur Http : {route}");
+        }
+        throw new Exception(response.ReasonPhrase);
+    }
+
+    public static async Task<IEnumerable<UserDTO>> GetAllUsers()
+    {
+        string route = $"api/Users";
+        var response = await Client.GetAsync(route);
+
+        if (response.IsSuccessStatusCode)
+        {
+            string resultat = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<IEnumerable<UserDTO>>(resultat)
+                ?? throw new FormatException($"Erreur Http : {route}");
+        }
+        throw new Exception(response.ReasonPhrase);
+    }
+
     //public static async Task<List<VolDto>> GetVolLights(DateTime dateJour)
     //{
     //    string route = $"api/vols/search/{dateJour.ToString("yyyy-MM-dd")}";

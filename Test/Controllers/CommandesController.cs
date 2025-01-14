@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NegosudLibrary.DAO;
 using NegosudLibrary.DBContext;
+using NegosudLibrary.DTO;
 
 namespace ApiNegosud.Controllers
 {
@@ -25,9 +26,40 @@ namespace ApiNegosud.Controllers
 
         // GET: api/Commandes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Commande>>> GetCommandes()
+        public async Task<ActionResult<IEnumerable<CommandeDTO>>> GetCommandes()
         {
-            return await _context.Commandes.ToListAsync();
+            List<CommandeDTO> commandeDTOs = new List<CommandeDTO>();
+            int i = 1;
+
+            var L = await _context.Commandes.Include(n => n.StatutCommande).Include(a => a.User).Include(v => v.Fournisseur).Include(c => c.LignesCommande).ThenInclude(x => x.Article).ToListAsync();
+
+            foreach (var item in L)
+            {
+                double prixtotal = 0;
+                foreach (var ligne in item.LignesCommande)
+                {
+                    prixtotal += ligne.Quantite * ligne.Article.PrixVente;
+                }
+
+                CommandeDTO dto = new CommandeDTO
+                {
+                    Id = item.Id,
+                    Date = item.Date,
+                    UserId = item.UserId,
+                    StatutCommandeId = item.StatutCommandeId,
+                    FournisseurId = item.FournisseurId,
+                    FournisseurNom = item.Fournisseur.NomDomaine,
+                    PrixTotal = prixtotal,
+                    UserNom = item.User.Nom + " " + item.User.Prenom,
+                    StatutCommande = item.StatutCommande.Statut
+
+
+
+                };
+                commandeDTOs.Add(dto);
+
+            }
+            return commandeDTOs;
         }
 
         // GET: api/Commandes/5

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NegosudLibrary.DAO;
 using NegosudLibrary.DBContext;
+using NegosudLibrary.DTO;
 
 namespace ApiNegosud.Controllers
 {
@@ -25,10 +26,33 @@ namespace ApiNegosud.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+
+            List<UserDTO> userDTOs = new List<UserDTO>();
+
+            var users = await _context.Users.ToListAsync();
+
+            foreach (var user in users)
+            {
+                UserDTO dto = new UserDTO
+                {
+                    Id = user.Id,
+                    Nom = user.Nom,
+                    Prenom = user.Prenom,
+                    Tel = user.Tel,
+                    Mdp = user.Mdp,
+                    Adresse = user.Adresse,
+                    Email = user.Email,
+                    RoleId = user.RoleId
+                };
+
+                userDTOs.Add(dto);
+            }
+
+            return userDTOs;
         }
+
 
         // GET: api/Users/5
         [HttpGet("{id}")]

@@ -38,6 +38,10 @@ public class NegosudContext(DbContextOptions<NegosudContext> options) : Identity
     public DbSet<User> Users { get; set; }
 
     public DbSet<UserSecure> UserSecures { get; set; }
+    
+    public DbSet<Role> Role { get; set; }
+
+
 
 
         // Si vous avez besoin d'une configuration spécifique à l'entité, utilisez OnModelCreating

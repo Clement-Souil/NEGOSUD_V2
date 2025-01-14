@@ -10,15 +10,19 @@ public class CommandeDTO
 
     public int UserId { get; set; }
 
+    public string UserNom { get; set; } = string.Empty; // Nom de l'utilisateur
+
     public int StatutCommandeId { get; set; }
+    
+    public string StatutCommande { get; set; } = string.Empty; 
 
     public int FournisseurId { get; set; }
 
     public string FournisseurNom { get; set; } = string.Empty;
 
-    public int PrixTotal { get; set; } = 0;
+    public double PrixTotal { get; set; } = 0;
 
-    public virtual IEnumerable<LigneCommande>? LignesCommande { get; set; }
+    //public virtual IEnumerable<LigneCommande>? LignesCommande { get; set; }
 
     //public virtual ICollection<LigneCommandeDTO>? ProduitCollection { get; set; }
 

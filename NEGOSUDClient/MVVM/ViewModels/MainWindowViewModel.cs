@@ -50,7 +50,7 @@ public class MainWindowViewModel : BaseViewModel
             switch (obj)
             {
                 case "Commandes":
-                    CurrentViewModel = new ListeCommandeViewModel();
+                    CurrentViewModel = new CommandeViewModel();
                     break;
                 case "Produits":
                     CurrentViewModel = new ListeProduitViewModel();
