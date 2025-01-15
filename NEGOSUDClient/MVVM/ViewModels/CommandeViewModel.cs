@@ -1,31 +1,64 @@
 ﻿using NEGOSUDClient.MVVM.ViewModels.Base;
+using NEGOSUDClient.MVVM.ViewModels;
 using NEGOSUDClient.Services;
+using NEGOSUDClient.Tools;
 using NegosudLibrary.DTO;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Windows.Input;
+using System.Windows;
+using NEGOSUDClient.MVVM.ViewModels.Items;
 
 namespace NEGOSUDClient.MVVM.ViewModels;
-
 public class CommandeViewModel : BaseViewModel
 {
-    public ObservableCollection<EtatCommandeViewModel> Commandes { get; set; }
     public ObservableCollection<CommandeItemViewModel> ListeCommande { get; set; } = new();
+
+    public ICommand OpenCommandCreationFormCommand { get; set; }
+
+    private Visibility _createUpdateCommandeFormVisibility = Visibility.Hidden;
+    public Visibility CreateUpdateCommandeFormVisibility
+    {
+        get { return _createUpdateCommandeFormVisibility; }
+        set
+        {
+            _createUpdateCommandeFormVisibility = value;
+            OnPropertyChanged(nameof(CreateUpdateCommandeFormVisibility));
+        }
+    }
+
+    private CommandeItemViewModel _currentCommande;
+    public CommandeItemViewModel CurrentCommande
+    {
+        get { return _currentCommande; }
+        set
+        {
+            _currentCommande = value;
+            OnPropertyChanged(nameof(CurrentCommande));
+        }
+    }
 
     public CommandeViewModel()
     {
         GetCommandAll();
-        //// Données fictives pour test
-        //Commandes = new ObservableCollection<EtatCommandeViewModel>
-        //{
-        //    new EtatCommandeViewModel { StatusLivraison = "Livré", StatusPaiement = "Payé" },
-        //    new EtatCommandeViewModel { StatusLivraison = "En Cours" },
-        //    new EtatCommandeViewModel { StatusLivraison = "Annulé", StatusPaiement = "Annulé" }
-        //};
+
+        // Initialisation de la commande
+        OpenCommandCreationFormCommand = new RelayCommand(OpenCommandCreation);
+    }
+
+    private void OpenCommandCreation(object obj)
+    {
+        if (CreateUpdateCommandeFormVisibility == Visibility.Hidden)
+        {
+            CurrentCommande = new CommandeItemViewModel(new CommandeDTO { FournisseurNom = "Nom du Fournisseur" });
+            //if (sender != null)
+            //{
+            //    CurrentArticle = (ArticleItemViewModel)sender;
+            //    //IsDeleteButtonVisible = Visibility.Visible;
+            //    //modify = true;
+            //}
+            CreateUpdateCommandeFormVisibility = Visibility.Visible;
+
+        }
     }
 
     private void GetCommandAll()

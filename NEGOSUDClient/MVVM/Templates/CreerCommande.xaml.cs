@@ -1,7 +1,5 @@
-﻿using NEGOSUDClient.MVVM.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,17 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NEGOSUDClient.MVVM.View
+namespace NEGOSUDClient.MVVM.Templates
 {
     /// <summary>
-    /// Logique d'interaction pour ListeCommandeVIew.xaml
+    /// Logique d'interaction pour CreerCommande.xaml
     /// </summary>
-    public partial class CommandeView : UserControl
+    public partial class CreerCommande : UserControl
     {
-        public CommandeView()
+        public CreerCommande()
         {
             InitializeComponent();
-            DataContext = new CommandeViewModel();
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
