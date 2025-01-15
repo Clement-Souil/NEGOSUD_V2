@@ -64,7 +64,10 @@ namespace ApiNegosud.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Article>> GetArticle(int id)
         {
-            var article = await _context.Articles.FindAsync(id);
+            var article = await _context.Articles
+                            .Include(c => c.Fournisseur)
+                            .Include(x => x.FamilleArticle)
+                            .FirstOrDefaultAsync(a => a.Id == id);
 
             if (article == null)
             {
@@ -110,7 +113,24 @@ namespace ApiNegosud.Controllers
         [HttpPost]
         public async Task<ActionResult<Article>> PostArticle(Article article)
         {
-            _context.Articles.Add(article);
+            Article n = new Article
+            {
+                Annee = article.Annee,
+                FamilleArticleId = article.FamilleArticleId,
+                FournisseurId = article.FournisseurId,
+                Nom = article.Nom,
+                Cepage = article.Cepage,
+                PrixAchat = article.PrixAchat,
+                PrixVente = article.PrixVente,
+                Degre = article.Degre,
+                Description = article.Description,
+                Quantite = article.Quantite,
+                SeuilMinimal = article.SeuilMinimal,
+                SeuilReappro = article.SeuilReappro,
+                Volume = article.Volume
+            };
+
+            _context.Articles.Add(n);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetArticle", new { id = article.Id }, article);
