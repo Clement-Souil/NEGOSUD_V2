@@ -268,14 +268,6 @@ namespace NEGOSUDClient.MVVM.ViewModels
             {
                 ArticleDAO = t.Result;
                 SelectedFamille = Familles.Where(c => c.Id == ArticleDAO.FamilleArticle.Id).FirstOrDefault();
-                //SelectedFournisseur = new FournisseurDTO
-                //{
-                //    Id = ArticleDAO.Fournisseur.Id,
-                //    Contact = ArticleDAO.Fournisseur.Contact,
-                //    NomDomaine = ArticleDAO.Fournisseur.NomDomaine,
-                //    Region = ArticleDAO.Fournisseur.Region
-                //};
-
                 SelectedFournisseur = Fournisseurs.Where(c => c.Id == ArticleDAO.Fournisseur.Id).FirstOrDefault();
 
             }, TaskScheduler.FromCurrentSynchronizationContext());
