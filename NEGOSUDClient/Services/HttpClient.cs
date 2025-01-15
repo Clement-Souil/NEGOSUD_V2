@@ -64,20 +64,69 @@ public class HttpClientService
         return response.IsSuccessStatusCode;
     }
 
-    //public static async Task<List<VolDto>> GetVolLights(DateTime dateJour)
-    //{
-    //    string route = $"api/vols/search/{dateJour.ToString("yyyy-MM-dd")}";
-    //    var response = await Client.GetAsync(route);
+    public static async Task<IEnumerable<FournisseurDTO>> GetFournisseurs()
+    {
+        string route = $"api/Fournisseurs";
+        var response = await Client.GetAsync(route);
 
-    //    if (response.IsSuccessStatusCode)
-    //    {
-    //        string resultat = await response.Content.ReadAsStringAsync();
-    //        return JsonConvert.DeserializeObject<List<VolDto>>(resultat)
-    //            ?? throw new FormatException($"Erreur Http : {route}");
-    //    }
-    //    throw new Exception(response.ReasonPhrase);
-    //}
+        if (response.IsSuccessStatusCode)
+        {
+            string resultat = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<IEnumerable<FournisseurDTO>>(resultat)
+                ?? throw new FormatException($"Erreur Http : {route}");
+        }
+        throw new Exception(response.ReasonPhrase);
+    }
 
+    public static async Task<IEnumerable<FamilleArticle>> GetFamilles()
+    {
+        string route = $"api/FamilleArticles";
+        var response = await Client.GetAsync(route);
 
+        if (response.IsSuccessStatusCode)
+        {
+            string resultat = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<IEnumerable<FamilleArticle>>(resultat)
+                ?? throw new FormatException($"Erreur Http : {route}");
+        }
+        throw new Exception(response.ReasonPhrase);
+    }
 
+    public static async Task<Article> GetArticlebyId(int id)
+    {
+        string route = $"api/Articles/{id}";
+        var response = await Client.GetAsync(route);
+
+        if (response.IsSuccessStatusCode)
+        {
+            string resultat = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<Article>(resultat)
+                ?? throw new FormatException($"Erreur Http : {route}");
+        }
+        throw new Exception(response.ReasonPhrase);
+    }
+
+    public static async Task<bool> ModifyArticle(Article articleDAO, int id)
+    {
+        var articleJson = JsonConvert.SerializeObject(articleDAO);
+        string route = $"api/Articles/{id}";
+
+        var content = new StringContent(articleJson, Encoding.UTF8, "application/json");
+
+        var response = await Client.PutAsync(route, content);
+
+        return response.IsSuccessStatusCode;
+    }
+
+    public static async Task<bool> CreateNewArticle(Article articleDAO)
+    {
+        var articleJson = JsonConvert.SerializeObject(articleDAO);
+        string route = $"api/Articles/";
+
+        var content = new StringContent(articleJson, Encoding.UTF8, "application/json");
+
+        var response = await Client.PostAsync(route, content);
+
+        return response.IsSuccessStatusCode;
+    }
 }

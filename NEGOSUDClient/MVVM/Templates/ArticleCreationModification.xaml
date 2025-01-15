@@ -32,7 +32,10 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
 
@@ -45,7 +48,7 @@
                     </Grid.ColumnDefinitions>
                     
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -53,46 +56,75 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Détails Produit" FontSize="25"/> 
                     
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Nom Article :" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentArticle.Article.Nom}" FontSize="20" Margin="4"/>
-                    <TextBlock Grid.Row="1" Grid.Column="2" Text="Année :" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding CurrentArticle.Article.Annee}"  Margin="4" FontSize="20" FontWeight="DemiBold"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Nom Article : " FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ArticleDAO.Nom}" FontSize="20" Margin="4"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="Année : " FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding ArticleDAO.Annee}"  Margin="4" FontSize="20"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0"  Text="Famille : " FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Familles}" 
+                         SelectedItem="{Binding SelectedFamille}" 
+                         DisplayMemberPath="Nom" 
+                         Width="170" Height="30" />
+                    <TextBlock Grid.Row="2" Grid.Column="2"  Text="Fournisseur : " FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <ComboBox Grid.Row="2" Grid.Column="3" ItemsSource="{Binding Fournisseurs}" 
+                         SelectedItem="{Binding SelectedFournisseur}" 
+                         DisplayMemberPath="NomDomaine" 
+                         Width="170" Height="30" />
+
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Prix Achat : "  FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding ArticleDAO.PrixAchat}"  FontSize="20" Margin="4" />
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="Prix Vente : "  FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding ArticleDAO.PrixVente}"  FontSize="20" Margin="4" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Volume (cl) : " FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding ArticleDAO.Volume}" FontSize="20" Margin="4"/>
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="Degré (%) : " FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="4" Grid.Column="3" Text="{Binding ArticleDAO.Degre}" FontSize="20" Margin="4"/>
                     
-                    <TextBox Grid.Row="2" Text="Famille" Foreground="Gray" FontSize="20" />
-                    <TextBox Grid.Row="2" Text="{Binding CurrentArticle.Article.Famille}" FontSize="20" />
-                    <TextBox Grid.Row="4" Text="{Binding CurrentArticle.Article.PrixVente, StringFormat={}{0} €}"  FontSize="30" Margin="0 0 0 30" FontWeight="DemiBold"/>
-                    <!--<TextBlock Grid.Row="4" Text="25$"  FontSize="30" Margin="0 0 0 50" FontWeight="DemiBold"/>-->
-
-                    <Grid Grid.Row="5" Margin="0 0 0 30">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Volume :" FontSize="15" Foreground="#959595" Margin="0 0 50 0"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Quantité :" FontSize="15" Foreground="#959595" Margin="0 0 50 0"/>
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Cépage :" FontSize="15" Foreground="#959595" Margin="0 0 50 0"/>
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Alcool :" FontSize="15" Foreground="#959595" Margin="0 0 50 0"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding CurrentArticle.Article.Volume, StringFormat={}{0} cl}" FontSize="15" FontWeight="DemiBold"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentArticle.Article.Quantite}" FontSize="15" FontWeight="DemiBold"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CurrentArticle.Article.Cepage}" FontSize="15" FontWeight="DemiBold"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurrentArticle.Article.Degre, StringFormat={}{0} %}" FontSize="15" FontWeight="DemiBold"/>
-                    </Grid>
-                    <TextBlock Grid.Row="6" Text="Description :" FontSize="15" Foreground="#959595"/>
-                    <TextBox  Grid.Row="7" FontSize="15" TextWrapping="Wrap"   Text="{Binding CurrentArticle.Article.Description}"/>
                 </Grid>
+                
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
+                    <TextBlock  Grid.Column="0" Text="Quantité en stock : "  FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox  Grid.Column="1" Text="{Binding ArticleDAO.Quantite}"  FontSize="13" Margin="4" />
+                    <TextBlock  Grid.Column="2" Text="Seuil Réappro. : "  FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox  Grid.Column="3" Text="{Binding ArticleDAO.SeuilReappro}"  FontSize="13" Margin="4" />
+                    <TextBlock  Grid.Column="4" Text="Seuil Minimal : " FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox  Grid.Column="5" Text="{Binding ArticleDAO.SeuilMinimal}" FontSize="13" Margin="4"/>
+                </Grid>
+                
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock  Grid.Column="0" Grid.Row="0" Text="Quantité en stock : "  FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox  Grid.Column="1" Grid.Row="0" Text="{Binding ArticleDAO.Cepage}"  FontSize="13" Margin="4" />
+                    <TextBlock  Grid.Column="0" Grid.Row="1" Text="Description : "  FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox  Grid.Column="1" Grid.Row="1" Text="{Binding ArticleDAO.Description}"  FontSize="13" Margin="4" Height="80" />
+
+                </Grid>
+                <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource RoundedButtonStyle}" Content="Valider" Command="{Binding ValidateCommand}"/>
             </Grid>
         </Border>
     </Grid>
