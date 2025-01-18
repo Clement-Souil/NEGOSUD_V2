@@ -1,5 +1,4 @@
-﻿using NEGOSUDClient.MVVM.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,13 @@ using System.Windows.Shapes;
 namespace NEGOSUDClient.MVVM.View
 {
     /// <summary>
-    /// Logique d'interaction pour ArticlesView.xaml
+    /// Logique d'interaction pour AddFournisseurView.xaml
     /// </summary>
-    public partial class ArticlesView : UserControl
+    public partial class AddFournisseurView : UserControl
     {
-        public ArticlesView()
+        public AddFournisseurView()
         {
             InitializeComponent();
-            DataContext = new ArticlesViewModel();
         }
-
     }
 }
