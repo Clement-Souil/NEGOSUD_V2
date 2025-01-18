@@ -42,6 +42,20 @@ public class HttpClientService
             throw new Exception(response.ReasonPhrase);
     }
 
+
+    public static async Task<List<FournisseurDTO>> GetFournisseurAll()
+    {
+        string route = $"api/Fournisseurs/";
+        var response = await Client.GetAsync(route);
+        if (response.IsSuccessStatusCode)
+        {
+            string resultat = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<FournisseurDTO>>(resultat)
+                ?? throw new FormatException($"Erreur Http : {route}");
+        }
+        return new List<FournisseurDTO>();
+    }
+
     //public static async Task<List<VolDto>> GetVolLights(DateTime dateJour)
     //{
     //    string route = $"api/vols/search/{dateJour.ToString("yyyy-MM-dd")}";

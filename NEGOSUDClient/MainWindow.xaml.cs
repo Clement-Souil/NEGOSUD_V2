@@ -25,8 +25,7 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         this.DataContext = MainWindowViewModel.Instance;
-
-        Task.Run(async () => await HttpClientService.Login("user", "password"));
+        Task.Run(async () => await HttpClientService.Login("nathan.estay@gmail.com", "Password0$"));
     }
 
 }
