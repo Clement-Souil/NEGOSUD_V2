@@ -81,18 +81,16 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40px"/>
                         </Grid.ColumnDefinitions>
 
                         <!-- En-têtes -->
-                        <TextBlock Text="Photo" Margin="10,0" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Id" Margin="10,0" Grid.Column="0" VerticalAlignment="Center"/>
                         <TextBlock Text="Domaine" Margin="10,0" Grid.Column="1" VerticalAlignment="Center"/>
                         <TextBlock Text="Région" Margin="10,0" Grid.Column="2" VerticalAlignment="Center"/>
-                        <TextBlock Text="Email" Margin="10,0" Grid.Column="3" VerticalAlignment="Center"/>
-                        <TextBlock Text="Téléphone" Margin="10,0" Grid.Column="4" VerticalAlignment="Center"/>
-                        <TextBlock Text="" Margin="10,0" Grid.Column="5" VerticalAlignment="Center"/>
+                        <TextBlock Text="Téléphone" Margin="10,0" Grid.Column="3" VerticalAlignment="Center"/>
+                        <TextBlock Text="" Margin="10,0" Grid.Column="4" VerticalAlignment="Center"/>
                     </Grid>
 
                     <!-- Contenu du tableau -->
@@ -105,15 +103,14 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="40px"/>
                                     </Grid.ColumnDefinitions>
                                     
-                                    <TextBlock Text="#1" Style="{StaticResource BoldStyle}" Margin="10,0" Grid.Column="0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding }" Margin="10,0" Grid.Column="2" VerticalAlignment="Center"/>
-                                    <TextBlock Text="Nathan Estay" Margin="10,0" Grid.Column="3" VerticalAlignment="Center"/>
-                                    <TextBlock Text="13,99€" Style="{StaticResource BoldStyle}" Margin="10,0" Grid.Column="5" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Id}" Style="{StaticResource BoldStyle}" Margin="10,0" Grid.Column="0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding NomDomaine}" Margin="10,0" Grid.Column="1" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Region}" Margin="10,0" Grid.Column="2" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Contact}" Style="{StaticResource BoldStyle}" Margin="10,0" Grid.Column="3" VerticalAlignment="Center"/>
 
                                 </Grid>
                             </DataTemplate>
