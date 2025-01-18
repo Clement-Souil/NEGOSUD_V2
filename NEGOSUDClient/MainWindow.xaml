@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NEGOSUDClient" xmlns:viewmodels="clr-namespace:NEGOSUDClient.MVVM.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="NEGOSUD" Height="450" Width="800">
+        Title="NEGOSUD" MinHeight="600" MinWidth="800" Width="1024" Height="768">
     <Window.Resources>
          <!--Style pour boutons avec coins arrondis et effet hover--> 
         <Style x:Key="StyleBouton" TargetType="Button">
@@ -71,10 +71,10 @@
                     <TextBlock Text="COMMANDES" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource StyleBouton}" Command="{Binding NavigationCommand}" CommandParameter="Produits" Margin="0,5,0,0">
+            <Button Style="{StaticResource StyleBouton}" Command="{Binding NavigationCommand}" CommandParameter="Articles" Margin="0,5,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Image Source="assets/Logo/Logo_Menu/Produit.png" Width="13" Height="13" Margin="0,0,10,0"/>
-                    <TextBlock Text="PRODUITS" VerticalAlignment="Center"/>
+                    <TextBlock Text="ARTICLES" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource StyleBouton}" Command="{Binding NavigationCommand}" CommandParameter="Clients" Margin="0,5,0,0">
