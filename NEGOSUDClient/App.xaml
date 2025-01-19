@@ -3,21 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:NEGOSUDClient"
              xmlns:view="clr-namespace:NEGOSUDClient.MVVM.View"
-            xmlns:viewModel="clr-namespace:NEGOSUDClient.MVVM.ViewModels"
-
+             xmlns:viewModel="clr-namespace:NEGOSUDClient.MVVM.ViewModels"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- Associe ListeCommandeViewModel à ListeCommandeView -->
             <DataTemplate DataType="{x:Type viewModel:ListeCommandeViewModel}">
-                <view:ListeCommandeView/>
+                <view:ListeCommandeView />
             </DataTemplate>
+
+            <!-- Associe ArticlesViewModel à ArticlesView -->
             <DataTemplate DataType="{x:Type viewModel:ArticlesViewModel}">
-                <view:ArticlesView/>
+                <view:ArticlesView />
             </DataTemplate>
+
+            <!-- Associe ListeInventaireViewModel à ListeInventaireView -->
+            <DataTemplate DataType="{x:Type viewModel:ListeInventaireViewModel}">
+                <view:ListeInventaireView />
+            </DataTemplate>
+
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="assets/Ressources/Styles.xaml"/>
+                <ResourceDictionary Source="assets/Ressources/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-         
     </Application.Resources>
 </Application>

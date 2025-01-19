@@ -62,7 +62,7 @@ public class MainWindowViewModel : BaseViewModel
                     CurrentViewModel = new ListeFournisseurViewModel();
                     break;
                 case "Stock":
-                    CurrentViewModel = new StockViewModel();
+                    CurrentViewModel = new ListeInventaireViewModel();
                     break;
             }
         }
